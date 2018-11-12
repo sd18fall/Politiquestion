@@ -1,4 +1,7 @@
-
+""" This file is the web app. Right now it is a hard coded version. 
+This will eventually reference the functions in order to display user information. 
+This uses HTML files Results1, ZIPquestionaire1, and zipcode1 as the pages of the webapp. 
+"""
 from flask import Flask
 app = Flask(__name__)
 
