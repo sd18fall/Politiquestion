@@ -5,19 +5,19 @@ Results1.html displays your vote on an issue, the reps vote on the issue, and yo
 ZIPquestionaire1.html displays the form that has bills(1 question rn) that the user "votes" on. 
 zipcode1.html lets the user input their zip code in order to find their rep. 
 """
-
 from flask import Flask
 app = Flask(__name__)
 
 from flask import render_template
 from flask import redirect, url_for, request
-
+ZIP=0
 @app.route('/')
 def zipentry():
     return render_template('zipcode1.html')
     
 @app.route('/ZIP', methods =['POST', 'GET'])
 def ZIP():
+    global ZIP
     ZIP = request.form['ZIP']
     return redirect(url_for('questions'))
 
@@ -33,7 +33,8 @@ def questions():
 @app.route('/results', methods = ['POST', 'GET'])
 def results():
     Q1 = request.form['Q1']
-    return render_template('Results1.html', UserScore=Q1, RepScore="yes")
+    score = "input variable here"
+    return render_template('Results1.html', Score=score, UserScore=Q1, RepScore="yes")
 
 if __name__ == '__main__':
     app.run()
