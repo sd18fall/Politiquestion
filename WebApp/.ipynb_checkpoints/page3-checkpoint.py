@@ -13,7 +13,7 @@ from flask import redirect, url_for, request
 ZIP=0
 @app.route('/')
 def zipentry():
-    return render_template('zipcode1.html')
+    return render_template('zipcode3.html')
     
 @app.route('/ZIP', methods =['POST', 'GET'])
 def ZIP():
