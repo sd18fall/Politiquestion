@@ -13,7 +13,7 @@ from flask import redirect, url_for, request
 ZIP=0
 @app.route('/')
 def zipentry():
-    return render_template('zipcode1.html')
+    return render_template('zipcode3.html')
     
 @app.route('/ZIP', methods =['POST', 'GET'])
 def ZIP():
@@ -34,7 +34,7 @@ def questions():
 def results():
     Q1 = request.form['Q1']
     score = "input variable here"
-    return render_template('Results2.html', Score=score, UserScore=Q1, RepScore="yes")
+    return render_template('Results1.html', Score=score, UserScore1=Q1, RepScore="yes")
 
 if __name__ == '__main__':
     app.run()

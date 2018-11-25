@@ -10,15 +10,16 @@ app = Flask(__name__)
 
 from flask import render_template
 from flask import redirect, url_for, request
-ZIP=0
+ZIPcode=0
 @app.route('/')
 def zipentry():
     return render_template('zipcode3.html')
     
 @app.route('/ZIP', methods =['POST', 'GET'])
 def ZIP():
-    global ZIP
-    ZIP = request.form['ZIP']
+    global ZIPcode
+    ZIPcode = request.form['ZIP']
+    print(ZIPcode)
     return redirect(url_for('questions'))
 
 @app.route('/questions', methods = ['POST'])
