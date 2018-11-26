@@ -8,6 +8,7 @@ import json
 from pprint import pprint
 reps=[]
 comparing_votes=[bill("Billington", "bills all day long"),] #import bills list from bills.py
+answers= import answers from MainPageCode
 
 def get_json(url):
     """Given a properly formatted URL for a JSON web API request, return
@@ -28,9 +29,9 @@ def get_rep(zipcode):
         repyboi=rep(data["officials"][i]['name'])
         reps.append(repyboi)
         i+=1
-    return reps #this function does not need to be fruitful
+    return reps
 
-def compare_opinions(rep):
+def compare_opinions():
     """Generates results based on comparing the opinions with weight to user priorities
     """
     passion=0
@@ -39,14 +40,27 @@ def compare_opinions(rep):
         passion+=bill.user_preference #get the total perference votes to guage relative preference
     for bill in comparing_votes:
         similarity+=bill.does_agree()*(bill.user_preference/passion) #multiply relative preference by binary of agreement
-        print(bill)
-    print ("Similarity score of "+str(similarity*100)+"%")
+    return "Similarity score of "+str(similarity*100)+"%"
 
-get_rep(ZIPcode)
-display questions:
+def give_me_things():
+    """Turns info into format for HTML"""
+    descriptions=[]
     while i< len(comparing_votes):
-        assign to question i
+        description.append(i.name+': '+i.description)
         i+=1
-get user_answers:
-    bill.user_vote=INPUT
-compare_opinions(rep)
+    #return descriptions
+    return ['hello', 'this', 'is', 'a', 'list']
+
+"""USER INPUT"""
+def get_user_answers(answers):
+    while i< len(comparing_votes):
+        comparing_votes[i].user_vote=answers[i]
+        i+=1
+
+def get_rep_answers():
+    """Turns info into format for HTML"""
+    answers=[]
+    while i< len(comparing_votes):
+        answers.append(i.rep_vote)
+        i+=1
+    return answers
