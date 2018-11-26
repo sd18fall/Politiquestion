@@ -1,18 +1,17 @@
-import Barebone.py
-user_answers= []#get user answers as list from WebApp code
-i=0
-while i <len(user_answers): #convert that list into attributes of the bills
-    if user_answers[i]='yes':
-        comparing_votes[i].user_vote=1
-    else:
-        comparing_votes[i].user_vote=-1
-    i+=1
+import Barebones
+import json
+import requests
+
+#from congress import Congress
+X-API-Key = 'a3Kt3J22sEpWhvLjXTrtWf4V560B8XExhkeOmMkD'
+api_url_base = "https://api.propublica.org/congress/v1/"
+#congress = Congress(a3Kt3J22sEpWhvLjXTrtWf4V560B8XExhkeOmMkD)
 
 class bill(object):
-    def __init__(self, name, id):
+    def __init__(self, name, id, congressnum):
         self.name=name
         self.id=id
-        self.congress = congress
+        self.congressnum = congressnum
         self.description=get_description(self)
         self.rep_vote=get_vote(self)
         self.user_vote=0
@@ -30,11 +29,11 @@ class bill(object):
         else:
             return 0
     def get_description(self):
-        url= "https://json?id="+self.id+"&key=""
+        url= ("https://api.propublica.org/congress/v1/"+self.congressnum+"/bills/"+self.id+".json", headers={'X-API-Key':'a3Kt3J22sEpWhvLjXTrtWf4V560B8XExhkeOmMkD'})
         data=get_json(url)
         return data[description]
      def get_vote(self):
-        url = "https://api.propublica.org/congress/v1/"+self.congress+"/bills/"+self.id+".json&key=a3Kt3J22sEpWhvLjXTrtWf4V560B8XExhkeOmMkD"
+        url = ("https://api.propublica.org/congress/v1/"+self.congressnum+"/bills/"+self.id+".json", headers={'X-API-Key':'a3Kt3J22sEpWhvLjXTrtWf4V560B8XExhkeOmMkD'})
         data=get_json(url)
         list = data[results][votes][vote][positions]
         for i in list:
