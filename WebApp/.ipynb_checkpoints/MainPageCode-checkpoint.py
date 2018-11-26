@@ -25,16 +25,17 @@ def questions():
     
 @app.route('/results', methods = ['POST'])
 def results():
-    Q1 = request.form['Q1']
+    Votes=['test question', 'happy days', 'yellow']
+    Vote1=Votes[0]
+    Vote2=Votes[1]
+    Vote3=Votes[2]
+    US1 = request.form['Q1']
+    US2 = request.form['happy']
+    US3 = request.form['sad']
     
-    Q2 = request.form['happy']
+    Score = "input equation here"
     
-    Q3 = request.form['sad']
-    
-    Score = "input variable here"
-    
-    return render_template('Results2.html', Score=Score, UserScore1=Q1, RepScore1="yes", 
-                           UserScore2=Q2, RepScore2= "no",UserScore3=Q3, RepScore3="yes")
+    return render_template('Results2.html', Score=Score, UserScore1=US1, RepScore1="yes", UserScore2=US2, RepScore2= "no", UserScore3=US3,RepScore3="yes", Vote1=Vote1, Vote2=Vote2, Vote3=Vote3)
 
 zipsaved=0
 if __name__ == '__main__':
