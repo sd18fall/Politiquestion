@@ -7,7 +7,7 @@ from urllib.request import urlopen
 import json
 from pprint import pprint
 reps=[]
-comparing_votes=[bill("Billington", "bills all day long"),]
+comparing_votes=[bill("Billington", "bills all day long"),] #import bills list from bills.py
 
 def get_json(url):
     """Given a properly formatted URL for a JSON web API request, return
@@ -30,21 +30,7 @@ def get_rep(zipcode):
         i+=1
     return reps #this function does not need to be fruitful
 
-def get_votes(rep):
-    """Given a representative, uses APIs to get their voting history
-    """
-    url="https://"+ rep + "&key="
-    data=get_json(url)
-    i=0
-    while i <len(comparing_votes): #convert that list into attributes of the bills
-        "vote= API lookup based on rep (argument) and bill (incriment)"
-        if vote='yes':
-            comparing_votes[i].rep_vote=1
-        else:
-            comparing_votes[i].rep_vote=-1
-        i+=1
-
-def compare_opinions(user, rep):
+def compare_opinions(rep):
     """Generates results based on comparing the opinions with weight to user priorities
     """
     passion=0
@@ -56,4 +42,11 @@ def compare_opinions(user, rep):
         print(bill)
     print ("Similarity score of "+str(similarity*100)+"%")
 
-print(get_rep('02457'))
+get_rep(ZIPcode)
+display questions:
+    while i< len(comparing_votes):
+        assign to question i
+        i+=1
+get user_answers:
+    bill.user_vote=INPUT
+compare_opinions(rep)
