@@ -7,7 +7,7 @@ from urllib.request import urlopen
 import json
 from pprint import pprint
 reps=[]
-comparing_votes=[bill("Billington", "bills all day long"),] #import bills list from bills.py
+comparing_votes=[bill("Billington", id, session), bill("Billsby", id, session), bill("Billard", id, session), bill("Billiam", id, session), bill("Bill", id, session), bill("Billy", id, session)] #import bills list from bills.py
 answers= import answers from MainPageCode
 
 def get_json(url):
@@ -45,6 +45,7 @@ def compare_opinions():
 def give_me_things():
     """Turns info into format for HTML"""
     descriptions=[]
+    i=0
     while i< len(comparing_votes):
         description.append(i.name+': '+i.description)
         i+=1
@@ -52,7 +53,9 @@ def give_me_things():
     return ['hello', 'this', 'is', 'a', 'list']
 
 """USER INPUT"""
+
 def get_user_answers(answers):
+    i=0
     while i< len(comparing_votes):
         comparing_votes[i].user_vote=answers[i]
         i+=1
@@ -60,7 +63,9 @@ def get_user_answers(answers):
 def get_rep_answers():
     """Turns info into format for HTML"""
     answers=[]
+    i=0
     while i< len(comparing_votes):
         answers.append(i.rep_vote)
         i+=1
-    return answers
+    #return answers
+    return ['Yes', 'Yes', 'Yes', 'No', 'Yes', 'No']
