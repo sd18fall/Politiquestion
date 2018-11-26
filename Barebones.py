@@ -25,7 +25,7 @@ def get_rep(zipcode):
     url= "https://www.googleapis.com/civicinfo/v2/representatives?filter[role][legislatorUpperBody]&address="+zipcode+"&key=AIzaSyB9AuQfeJ2TRNSfE8GEHyBfwpgKaISJ7WI"
     data=get_json(url)
     i=2 #skip prez and vice-prez
-    while i < """len(data["officials"])"""4:
+    while i < 4:
         repyboi=rep(data["officials"][i]['name'])
         reps.append(repyboi)
         i+=1
