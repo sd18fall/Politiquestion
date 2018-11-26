@@ -1,0 +1,65 @@
+Background and Context
+
+The main idea of our project is to create a political alignment survey that utilizes data on your specific congressional representatives and tells you how well you align with your delegate.  In this project, we will explore APIs, data parsing, and user input. We are working on the Web app and need to create more flexibility in the HTML. 
+
+
+WebAPP Code: (set of files and templates)
+	
+  Includes a few templates of HTML, and a main code page that gives the variable inputs 
+	to the templates and displays them to the user
+
+Bills Code: (separate file)
+	
+  Creates a bill object for each bill we are concerned with and stores information on them
+
+Python Main Code:
+
+	Contains the main functionality of pulling data, and evaluating similarity of user and rep 
+	votes
+  
+  
+Current Program Flow:
+
+User inputs zipcode and an API reference turns it into their representative (Python Function)
+
+A list of bills is hardcoded which each instantiate our class Bill(object). 
+
+This instantiation automatically calls upon APIs for the bills description and your reps vote on it in the __init__ method and stores the data in their attributes (Python Class)
+
+The user then inputs their preference and vote into the attributes of each bill (WebApp)
+
+Finally a function is called that computes a comparative coefficient and visually compares you and your rep (Python Function)
+
+
+Key Questions
+
+Do you have suggestions to make HTML more flexible/less hardcoded? (in respect to # of bills displayed or other ways)
+
+Are there technical challenges you think we may have missed?
+
+What features or functionality would you like to see or do you not need?
+
+How do you import and export variables from documents and HTML?
+
+
+Agenda for technical review session
+
+In this session we plan to do a quick overview of our project, then split into small groups and ask questions specifically around API and Web app stuff. After that we will hand out the survey last. 
+
+
+SURVEY STARTS HERE
+
+Questions: 								Name:
+
+
+Do you have suggestions to make HTML more flexible? (in respect to # of bills displayed or other ways)
+
+Do you have major concerns about the project as of now?
+
+Do you have any feedback on finding bills?
+
+How do you import and export variables from documents and HTML?
+
+Any other notes?
+
+https://docs.google.com/presentation/d/1DgImjXyqLbh4ypm9-J-qpGtdEyRHD9JOTnhP68Z94hA/edit?usp=sharing 
