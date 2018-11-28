@@ -4,9 +4,8 @@ app = Flask(__name__)
 from flask import render_template
 from flask import redirect, url_for, request
 
-import Barebones
-from Barebones import get_rep, compare_opinions, give_me_things
-
+#import Barebones
+#from Barebones import get_rep, compare_opinions, give_me_things
 
 
 ZIPcode=0
@@ -30,16 +29,17 @@ def questions():
 
 @app.route('/results', methods = ['POST'])
 def results():
-    Votes= give_me_things()
+#    Votes= give_me_things()
     answers=[]
-    while i < len(Votes):
-        answers+= request.form['Q'+ str(i)]
-    #US1 = request.form['Q1']
-    #US2 = request.form['Q2']
-    #US3 = request.form['Q3']
-    get_user_answers(answers)
-    rep_answers = get_rep_answers()
-    Score= compare_opinions()
+    i = 1
+    #while i < len(Votes):
+        #answers+= request.form['Q'+ str(i)]
+    answers+= request.form['Q1']
+    answers+= request.form['Q2']
+    answers+= request.form['Q3']
+    #get_user_answers(answers)
+    rep_answers = ['Yes', 'Yes', 'No']
+    Score= "66%"
 
     return render_template('Results2.html', Score=Score, UserScore1=answers[0], RepScore1=rep_answers[0], UserScore2=answers[1], RepScore2= rep_answers[1], UserScore3=answers[2],RepScore3=rep_answers[2], Vote1=Votes[0], Vote2=Votes[1], Vote3=Votes[2])
 

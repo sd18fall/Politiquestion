@@ -7,8 +7,8 @@ from urllib.request import urlopen
 import json
 from pprint import pprint
 reps=[]
-comparing_votes=[bill("Billington", id, session), bill("Billsby", id, session), bill("Billard", id, session), bill("Billiam", id, session), bill("Bill", id, session), bill("Billy", id, session)] #import bills list from bills.py
-answers= import answers from MainPageCode
+comparing_votes=[bill("Billington", ID, session), bill("Billsby", ID, session), bill("Billard", ID, session), bill("Billiam", ID, session), bill("Bill", ID, session), bill("Billy", ID, session)] #import bills list from bills.py
+
 
 def get_json(url):
     """Given a properly formatted URL for a JSON web API request, return
@@ -44,11 +44,11 @@ def compare_opinions():
 
 def give_me_things():
     """Turns info into format for HTML"""
-    descriptions=[]
-    i=0
-    while i< len(comparing_votes):
-        description.append(i.name+': '+i.description)
-        i+=1
+    descriptions=bills.get_descriptions()
+    #i=0
+    #while i< len(comparing_votes):
+        #description.append(comparing_votes[i].name+': '+comparing_votes[i].description)
+        #i+=1
     #return descriptions
     return ['hello', 'this', 'is', 'a', 'list']
 
