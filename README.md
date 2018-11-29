@@ -13,5 +13,5 @@ First download all files in repository.
 
 The web app only requires you to run the page3.py file in the WebApp folder. 
 
-The functions are in a file names Barebones.py. This file won't do anyting automatically when run. 
+The functions are in a file names Barebones.py. This file won't do anything automatically when run. 
 The functions that are written for pulling API are working fairly well right now. 
