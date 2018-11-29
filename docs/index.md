@@ -1,5 +1,5 @@
 # This is our Home Page
-*our pages
+*our pages*
 
 [Results](https://sd18fall.github.io/Politiquestion/Results/)
 [Story](https://sd18fall.github.io/Politiquestion/Story/)
