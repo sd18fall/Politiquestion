@@ -7,4 +7,4 @@
 
 [Topics](https://sd18fall.github.io/Politiquestion/Topics)
 
-[Getting Started](https://sd18fall.github.io/Politiquestion/Getting-Started)
+[Getting Started](https://sd18fall.github.io/Politiquestion/Getting Started)
