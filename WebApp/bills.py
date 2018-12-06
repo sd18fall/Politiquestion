@@ -18,12 +18,14 @@ def get_json(url):
     response_data = json.loads(str(response_text, "utf-8"))
     return response_data
 
-class bill(object):
-    def __init__(self, name, ID, congressnum=0):
+class Bill(object):
+    def __init__(self, name, ID, congressnum=0, sessionnum=0, rollnum=0):
         self.name=name
         self.ID=ID
         self.congressnum = congressnum
-        self.rep_vote='Yes'
+        self.sessionnum = sessionnum
+        self.rep1_vote='Yes'
+        self.rep2_vote='No'
         self.user_vote=0
         self.user_preference=1 #scale
     def __str__(self):
@@ -45,19 +47,27 @@ class bill(object):
         data = r.json()
         description = data['results'][0]['summary']
         return data['results'][0]['summary']
-    # def get_vote(self):
-    #     headers={'X_API_Key':'a3Kt3J22sEpWhvLjXTrtWf4V560B8XExhkeOmMkD'}
-    #     url = ("https://api.propublica.org/congress/v1/"+self.congressnum+"/bills/"+self.ID+".json", headers)
-    #     data=get_json(url)
-    #     list = data[results][votes][vote][positions]
-    #     for i in list:
-    #         if i['name']==rep:
-    #             self.rep_vote=i['vote_position']
-    #         return
+    def get_vote(self):
+        headers={'X_API_Key':'a3Kt3J22sEpWhvLjXTrtWf4V560B8XExhkeOmMkD'}
+        url = ("https://api.propublica.org/congress/v1/"+self.congressnum+"/senate/sessions/"+self.sessionnum+"/votes/"+self.rollnum+".json", headers)
+        r = requests.get(url, headers=headers)
+        data= r.json()
+        list = data['results']['votes']['vote']['positions']
+        for i in list:
+            if i['name']==reps[0]:
+                self.rep1_vote=i['vote_position']
+            elif i['name']==reps[1]:
+                self.rep2_vote=i['vote_position']
+            return
 #
 """BILLS"""
 bills=[
-Bill('North American Energy Security and Infrastructure Act of 2016', 's2012', '114'),
-Bill('Child Interstate Abortion Notification Act', 's403', '109'),
-Bill('Defense of Marriage Act', 'hr3396', '104'),
-Bill('Patient Protection and Affordable Care Act', 'hr3590', '111')]
+Bill('North American Energy Security and Infrastructure Act of 2016', 's2012', '114', '2', '54'),
+Bill('Child Interstate Abortion Notification Act', 's403', '109', '2', '216'),
+Bill('Defense of Marriage Act', 'hr3396', '104', '2', '280'),
+Bill('Patient Protection and Affordable Care Act', 'hr3590', '111', '1', '396')]
+
+reps = ['Lamar Alexander', 'Michael Bennet']
+bills[0].get_vote
+
+print(bills[0].rep1_vote)
