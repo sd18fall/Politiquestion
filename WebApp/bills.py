@@ -1,4 +1,4 @@
-import Barebones
+#import Barebones
 #from Barebones import get_json
 import json
 import requests
@@ -28,6 +28,7 @@ class Bill(object):
         self.rep2_vote='No'
         self.user_vote=0
         self.user_preference=1 #scale
+        self.description=self.get_description()
     def __str__(self):
         print(self.name)
         # if self.rep_vote==self.user_vote:

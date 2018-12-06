@@ -2,37 +2,40 @@
 information to the user and to calculate similarity to representative votes.
 """
 import requests
+#import bills
+from bills import Bill
 from urllib.request import urlopen
 import json
 from pprint import pprint
 reps=[]
 
-class Bill(object):
-    def __init__(self, name, ID, congressnum=0):
-        self.name=name
-        self.ID=ID
-        self.congressnum = congressnum
-        self.rep_vote='Yes'
-        self.user_vote=0
-        self.user_preference=1 #scale
-        self.description = self.get_description()
-    def does_agree(self):
-        if self.user_vote==self.rep_vote:
-            return 1
-        else:
-            return 0
-    def get_description(self):
-        headers = {"X-API-Key": "a3Kt3J22sEpWhvLjXTrtWf4V560B8XExhkeOmMkD"}
-        url = "https://api.propublica.org/congress/v1/"+self.congressnum+"/bills/"+self.ID+".json"
-        r = requests.get(url, headers=headers)
-        data = r.json()
-        description = data['results'][0]['summary']
-        return data['results'][0]['summary']
+# class Bill(object):
+#     def __init__(self, name, ID, congressnum=0):
+#         self.name=name
+#         self.ID=ID
+#         self.congressnum = congressnum
+#         self.rep_vote='Yes'
+#         self.user_vote=0
+#         self.user_preference=1 #scale
+#         self.description = self.get_description()
+#     def does_agree(self):
+#         if self.user_vote==self.rep_vote:
+#             return 1
+#         else:
+#             return 0
+#     def get_description(self):
+#         headers = {"X-API-Key": "a3Kt3J22sEpWhvLjXTrtWf4V560B8XExhkeOmMkD"}
+#         url = "https://api.propublica.org/congress/v1/"+self.congressnum+"/bills/"+self.ID+".json"
+#         r = requests.get(url, headers=headers)
+#         data = r.json()
+#         description = data['results'][0]['summary']
+#         return data['results'][0]['summary']
 
 comparing_votes=[
-Bill('North American Energy Security and Infrastructure Act of 2016', 's2012', '114'),
-Bill('Child Interstate Abortion Notification Act', 's403', '109'),
-Bill('Defense of Marriage Act', 'hr3396', '104')]
+Bill('North American Energy Security and Infrastructure Act of 2016', 's2012', '114', '2', '54'),
+Bill('Child Interstate Abortion Notification Act', 's403', '109', '2', '216'),
+Bill('Defense of Marriage Act', 'hr3396', '104', '2', '280'),
+Bill('Patient Protection and Affordable Care Act', 'hr3590', '111', '1', '396')]
 
 def get_json(url):
     """Given a properly formatted URL for a JSON web API request, return
@@ -59,18 +62,18 @@ def compare_opinions(rep):
     """Generates results based on comparing the opinions with weight to user priorities
     """
     passion=0
-    for bill in comparing_votes:
-        passion+=bill.user_preference #get the total perference votes to guage relative preference
+    for Bill in comparing_votes:
+        passion+=Bill.user_preference #get the total perference votes to guage relative preference
     similarity=0
-    for bill in comparingvotes:
+    for Bill in comparingvotes:
         agree=0
         if rep==1:
-            if bill.rep1_vote==bill.user_vote:
+            if Bill.rep1_vote==Bill.user_vote:
                 agree=1
         elif rep==2:
-            if bill.rep2_vote==bill.user_vote:
+            if Bill.rep2_vote==Bill.user_vote:
                 agree=1
-        similarity+=agree*(bill.user_preference/passion) #multiply relative preference by binary of agreement
+        similarity+=agree*(Bill.user_preference/passion) #multiply relative preference by binary of agreement
     return "Similarity score of "+str(similarity*100)[:5]+"% with representative "+reps[rep]
 
     """Generates results based on comparing the opinions with weight to user priorities
@@ -104,10 +107,10 @@ def get_rep_answers():
     """Turns info into format for HTML"""
     rep1_answers=[]
     rep2_answers=[]
-    for bill in comparing_votes:
-        bill.get_vote() #API calls
-        rep1_answers.append(bill.rep1_vote)
-        rep2_answers.append(bill.rep2_vote)
+    for Bill in comparing_votes:
+        Bill.get_vote() #API calls
+        rep1_answers.append(Bill.rep1_vote)
+        rep2_answers.append(Bill.rep2_vote)
     return [rep1_answers, rep2_answers]
 
 """def get_rep_answers():
