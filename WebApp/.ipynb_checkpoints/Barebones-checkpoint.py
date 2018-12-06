@@ -1,30 +1,41 @@
 """" This file contains the functions that the web app will use to display
 information to the user and to calculate similarity to representative votes.
 """
-
+import requests
+#import bills
+from bills import Bill
 from urllib.request import urlopen
 import json
 from pprint import pprint
 reps=[]
-ID=0
-session=0
 
-class bill(object):
-    def __init__(self, name, ID, congressnum=0):
-        self.name=name
-        self.ID=ID
-        self.congressnum = congressnum
-        self.rep_vote='Yes'
-        self.user_vote=0
-        self.user_preference=1 #scale
-    def does_agree(self):
-        if self.user_vote==self.rep_vote:
-            return 1
-        else:
-            return 0
+# class Bill(object):
+#     def __init__(self, name, ID, congressnum=0):
+#         self.name=name
+#         self.ID=ID
+#         self.congressnum = congressnum
+#         self.rep_vote='Yes'
+#         self.user_vote=0
+#         self.user_preference=1 #scale
+#         self.description = self.get_description()
+#     def does_agree(self):
+#         if self.user_vote==self.rep_vote:
+#             return 1
+#         else:
+#             return 0
+#     def get_description(self):
+#         headers = {"X-API-Key": "a3Kt3J22sEpWhvLjXTrtWf4V560B8XExhkeOmMkD"}
+#         url = "https://api.propublica.org/congress/v1/"+self.congressnum+"/bills/"+self.ID+".json"
+#         r = requests.get(url, headers=headers)
+#         data = r.json()
+#         description = data['results'][0]['summary']
+#         return data['results'][0]['summary']
 
-comparing_votes=[bill("Billington", ID, session), bill("Billsby", ID, session), bill("Billard", ID, session)] #import bills list from bills.py
-
+comparing_votes=[
+Bill('North American Energy Security and Infrastructure Act of 2016', 's2012', '114', '2', '54'),
+Bill('Child Interstate Abortion Notification Act', 's403', '109', '2', '216'),
+Bill('Defense of Marriage Act', 'hr3396', '104', '2', '280'),
+Bill('Patient Protection and Affordable Care Act', 'hr3590', '111', '1', '396')]
 
 def get_json(url):
     """Given a properly formatted URL for a JSON web API request, return
@@ -40,52 +51,78 @@ def get_rep(zipcode):
     """
     url= "https://www.googleapis.com/civicinfo/v2/representatives?filter[role][legislatorUpperBody]&address="+zipcode+"&key=AIzaSyB9AuQfeJ2TRNSfE8GEHyBfwpgKaISJ7WI"
     data=get_json(url)
-    i=2 #skip prez and vice-prez
-    while i < 4:
+    i=0 #skip prez and vice-prez
+    reps=[]
+    while i <4:
         repyboi=rep(data["officials"][i]['name'])
         reps.append(repyboi)
         i+=1
     return reps
 
-def compare_opinions():
+def compare_opinions(rep):
     """Generates results based on comparing the opinions with weight to user priorities
     """
+    passion=4
+    #for Bill in comparing_votes:
+        #passion+=Bill.user_preference #get the total perference votes to guage relative preference
+    reps=["Not Werking", "API Sucks"]
+    similarity=0
+    agree=0
+    for Bill in comparing_votes:
+        if rep==1:
+            if Bill.rep1_vote==Bill.user_vote:
+                agree+=1
+        elif rep==2:
+            if Bill.rep2_vote==Bill.user_vote:
+                agree+=1
+    similarity=agree/passion# use later*(Bill.user_preference/passion) #multiply relative preference by binary of agreement
+    return "Similarity score of "+str(similarity*100)+" with representative "+ reps[1]
+
+    """Generates results based on comparing the opinions with weight to user priorities
+
     passion=0
     similarity=0
     for bill in comparing_votes:
         passion+=bill.user_preference #get the total perference votes to guage relative preference
     for bill in comparing_votes:
         similarity+=bill.does_agree()*(bill.user_preference/passion) #multiply relative preference by binary of agreement
-    return "Similarity score of "+str(similarity*100)[:5]+"%" #turns score into percentage with 2 past decimal
+    return "Similarity score of "+str(similarity*100)[:5]+"%" #turns score into percentage with 2 past decimal"""
 
 def give_me_things():
     """Turns info into format for HTML"""
-    #descriptions=bills.get_descriptions()
-    #i=0
-    #while i< len(comparing_votes):
-        #description.append(comparing_votes[i].name+': '+comparing_votes[i].description)
-        #i+=1
-    #return descriptions
-    return ['bill 1', 'bill 2', 'bill 3']
+    descriptions=[]
+    i=0
+    while i< len(comparing_votes):
+        descriptions.append(comparing_votes[i].name+': '+comparing_votes[i].description)
+        i+=1
+    return descriptions
 
 """USER INPUT"""
 
 def get_user_answers(answers):
     i=0
-    while i< len(comparing_votes):
+    while i< len(answers):
         comparing_votes[i].user_vote=answers[i]
         i+=1
 
 def get_rep_answers():
     """Turns info into format for HTML"""
-    #answers=bills.getreppy()
-    #i=0
-    #while i< len(comparing_votes):
-        #answers.append(i.rep_vote)
-        #i+=1
-    #return answers
-    return ['Yes', 'Yes', 'Yes']
+    rep1_answers=["Yes", "Yes", "Yes"]
+    rep2_answers=["No","No","No"]
+    #for Bill in comparing_votes:
+        #Bill.get_vote() #API calls
+        #rep1_answers.append(Bill.rep1_vote)
+        #rep2_answers.append(Bill.rep2_vote)
+    #return [rep1_answers, rep2_answers]
+    return [["Yes", "Yes", "Yes", "Yes"],["No","No","No", "No"]]
 
+"""def get_rep_answers():
+    Turns info into format for HTML
+    answers=['Yes', 'Yes', 'Yes'] #Insert API reference
+    i=0
+    for i in comparing_votes:
+        answers.append(i.rep_vote)
+    return answers"""
 
 
 """ This is Main Page Code"""
@@ -106,30 +143,32 @@ def ZIP():
     Zip = request.form['ZIP']
     global ZIPcode
     ZIPcode = Zip
-    get_rep(ZIPcode)
+    #global reps
+    #reps=get_rep(ZIPcode)
     return redirect(url_for('questions'))
 
 @app.route('/questions', methods = ['POST'])
 def questions():
     Votes= give_me_things()
-    return render_template('ZIPquestionaire2.html', Vote1=Votes[0], Vote2=Votes[1], Vote3=Votes[2])
+    return render_template('ZIPquestionaire2.html', Vote1=Votes[0], Vote2=Votes[1], Vote3=Votes[2], Vote4=Votes[3])
 
 @app.route('/results', methods = ['POST'])
 def results():
+    Score=""
     Votes= give_me_things()
     answers=[]
     i = 1
     #while i < len(Votes):
-        #answers+= request.form['Q'+ str(i)]
+        #answers.append(request.form['Q'+ str(i)])
     answers.append(request.form['Q1'])
     answers.append(request.form['Q2'])
     answers.append(request.form['Q3'])
-    #get_user_answers(answers)
-    rep_answers = ['Yes', 'Yes', 'No']
-    Score= compare_opinions()
+    answers.append(request.form['Q4'])
+    get_user_answers(answers)
+    rep_answers = get_rep_answers()
+    Score= compare_opinions(1)
 
-    return render_template('Results2.html', Score=Score, UserScore1=answers[0], RepScore1=rep_answers[0], UserScore2=answers[1], RepScore2= rep_answers[1], UserScore3=answers[2],RepScore3=rep_answers[2], Vote1=Votes[0], Vote2=Votes[1], Vote3=Votes[2])
-    #return "Success"
+    return render_template('Results2.html', Score=Score, UserScore1=answers[0], Rep1Score1=rep_answers[0][0], Rep1Score2=rep_answers[0][1], Rep1Score3=rep_answers[0][2], Rep1Score4=rep_answers[1][3], UserScore2=answers[1], UserScore3=answers[2], UserScore4=answers[3], Rep2Score1=rep_answers[1][0], Rep2Score2=rep_answers[1][1], Rep2Score3=rep_answers[1][2], Rep2Score4=rep_answers[1][3], Vote1=Votes[0], Vote2=Votes[1], Vote3=Votes[2], Vote4=Votes[3])
 
 if __name__ == '__main__':
     app.run()

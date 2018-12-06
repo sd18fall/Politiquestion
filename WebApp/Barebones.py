@@ -51,8 +51,9 @@ def get_rep(zipcode):
     """
     url= "https://www.googleapis.com/civicinfo/v2/representatives?filter[role][legislatorUpperBody]&address="+zipcode+"&key=AIzaSyB9AuQfeJ2TRNSfE8GEHyBfwpgKaISJ7WI"
     data=get_json(url)
-    i=2 #skip prez and vice-prez
-    while i < 4:
+    i=0 #skip prez and vice-prez
+    reps=[]
+    while i <4:
         repyboi=rep(data["officials"][i]['name'])
         reps.append(repyboi)
         i+=1
@@ -61,20 +62,21 @@ def get_rep(zipcode):
 def compare_opinions(rep):
     """Generates results based on comparing the opinions with weight to user priorities
     """
-    passion=0
-    for Bill in comparing_votes:
-        passion+=Bill.user_preference #get the total perference votes to guage relative preference
+    passion=4
+    #for Bill in comparing_votes:
+        #passion+=Bill.user_preference #get the total perference votes to guage relative preference
+    reps=["Not Werking", "API Sucks"]
     similarity=0
-    for Bill in comparingvotes:
-        agree=0
+    agree=0
+    for Bill in comparing_votes:
         if rep==1:
             if Bill.rep1_vote==Bill.user_vote:
-                agree=1
+                agree+=1
         elif rep==2:
             if Bill.rep2_vote==Bill.user_vote:
-                agree=1
-        similarity+=agree*(Bill.user_preference/passion) #multiply relative preference by binary of agreement
-    return "Similarity score of "+str(similarity*100)[:5]+"% with representative "+reps[rep]
+                agree+=1
+    similarity=agree/passion# use later*(Bill.user_preference/passion) #multiply relative preference by binary of agreement
+    return "Similarity score of "+str(similarity*100)+" with representative "+ reps[1]
 
     """Generates results based on comparing the opinions with weight to user priorities
 
@@ -99,19 +101,20 @@ def give_me_things():
 
 def get_user_answers(answers):
     i=0
-    while i< len(comparing_votes):
+    while i< len(answers):
         comparing_votes[i].user_vote=answers[i]
         i+=1
 
 def get_rep_answers():
     """Turns info into format for HTML"""
-    rep1_answers=[]
-    rep2_answers=[]
-    for Bill in comparing_votes:
-        Bill.get_vote() #API calls
-        rep1_answers.append(Bill.rep1_vote)
-        rep2_answers.append(Bill.rep2_vote)
-    return [rep1_answers, rep2_answers]
+    rep1_answers=["Yes", "Yes", "Yes"]
+    rep2_answers=["No","No","No"]
+    #for Bill in comparing_votes:
+        #Bill.get_vote() #API calls
+        #rep1_answers.append(Bill.rep1_vote)
+        #rep2_answers.append(Bill.rep2_vote)
+    #return [rep1_answers, rep2_answers]
+    return [["Yes", "Yes", "Yes", "Yes"],["No","No","No", "No"]]
 
 """def get_rep_answers():
     Turns info into format for HTML
@@ -140,13 +143,14 @@ def ZIP():
     Zip = request.form['ZIP']
     global ZIPcode
     ZIPcode = Zip
-    get_rep(ZIPcode)
+    #global reps
+    #reps=get_rep(ZIPcode)
     return redirect(url_for('questions'))
 
 @app.route('/questions', methods = ['POST'])
 def questions():
     Votes= give_me_things()
-    return render_template('ZIPquestionaire2.html', Vote1=Votes[0], Vote2=Votes[1], Vote3=Votes[2])
+    return render_template('ZIPquestionaire2.html', Vote1=Votes[0], Vote2=Votes[1], Vote3=Votes[2], Vote4=Votes[3])
 
 @app.route('/results', methods = ['POST'])
 def results():
@@ -159,11 +163,12 @@ def results():
     answers.append(request.form['Q1'])
     answers.append(request.form['Q2'])
     answers.append(request.form['Q3'])
+    answers.append(request.form['Q4'])
     get_user_answers(answers)
     rep_answers = get_rep_answers()
-    Score= compare_opinions()
+    Score= compare_opinions(1)
 
-    return render_template('Results2.html', Score=Score, UserScore1=answers[0], Rep1Score1=rep_answers[0][0], Rep1Score2=rep_answers[0][1], Rep1Score3=rep_answers[0][2], UserScore2=answers[1], UserScore3=answers[2],Rep2Score1=rep_answers[1][0], Rep2Score2=rep_answers[1][1], Rep2Score3=rep_answers[1][2], Vote1=Votes[0], Vote2=Votes[1], Vote3=Votes[2])
+    return render_template('Results2.html', Score=Score, UserScore1=answers[0], Rep1Score1=rep_answers[0][0], Rep1Score2=rep_answers[0][1], Rep1Score3=rep_answers[0][2], Rep1Score4=rep_answers[1][3], UserScore2=answers[1], UserScore3=answers[2], UserScore4=answers[3], Rep2Score1=rep_answers[1][0], Rep2Score2=rep_answers[1][1], Rep2Score3=rep_answers[1][2], Rep2Score4=rep_answers[1][3], Vote1=Votes[0], Vote2=Votes[1], Vote3=Votes[2], Vote4=Votes[3])
 
 if __name__ == '__main__':
     app.run()

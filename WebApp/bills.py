@@ -22,6 +22,7 @@ class Bill(object):
     def __init__(self, name, ID, congressnum=0, sessionnum=0, rollnum=0):
         self.name=name
         self.ID=ID
+        self.rollnum= rollnum
         self.congressnum = congressnum
         self.sessionnum = sessionnum
         self.rep1_vote='Yes'
@@ -50,11 +51,12 @@ class Bill(object):
         return data['results'][0]['summary']
     def get_vote(self):
         headers={'X_API_Key':'a3Kt3J22sEpWhvLjXTrtWf4V560B8XExhkeOmMkD'}
-        url = ("https://api.propublica.org/congress/v1/"+self.congressnum+"/senate/sessions/"+self.sessionnum+"/votes/"+self.rollnum+".json", headers)
+        url = ("https://api.propublica.org/congress/v1/"+self.congressnum+"/senate/sessions/"+self.sessionnum+"/votes/"+self.rollnum+".json")
         r = requests.get(url, headers=headers)
         data= r.json()
-        list = data['results']['votes']['vote']['positions']
-        for i in list:
+        print (data)
+        lists = data['results']['votes']['vote']['positions']
+        for i in lists:
             if i['name']==reps[0]:
                 self.rep1_vote=i['vote_position']
             elif i['name']==reps[1]:
@@ -68,7 +70,7 @@ Bill('Child Interstate Abortion Notification Act', 's403', '109', '2', '216'),
 Bill('Defense of Marriage Act', 'hr3396', '104', '2', '280'),
 Bill('Patient Protection and Affordable Care Act', 'hr3590', '111', '1', '396')]
 
-reps = ['Lamar Alexander', 'Michael Bennet']
-bills[0].get_vote
+#reps = ['Lamar Alexander', 'Michael Bennet']
+#bills[0].get_vote
 
-print(bills[0].rep1_vote)
+#print(bills[0].rep1_vote)
