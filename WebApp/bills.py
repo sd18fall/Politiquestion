@@ -39,12 +39,12 @@ class bill(object):
         else:
             return 0
     def get_description(self):
-        header = {'X_API_Key':'a3Kt3J22sEpWhvLjXTrtWf4V560B8XExhkeOmMkD'}
-        url=("https://api.propublica.org/congress/v1/"+self.congressnum+"/bills/"+self.ID+".json", header)
-        print (url)
-        data=get_json(url)
-        description = data[results][summary]
-        return data[results][summary]
+        headers = {"X-API-Key": "a3Kt3J22sEpWhvLjXTrtWf4V560B8XExhkeOmMkD"}
+        url = "https://api.propublica.org/congress/v1/"+self.congressnum+"/bills/"+self.ID+".json"
+        r = requests.get(url, headers=headers)
+        data = r.json()
+        description = data['results'][0]['summary']
+        return data['results'][0]['summary']
     # def get_vote(self):
     #     headers={'X_API_Key':'a3Kt3J22sEpWhvLjXTrtWf4V560B8XExhkeOmMkD'}
     #     url = ("https://api.propublica.org/congress/v1/"+self.congressnum+"/bills/"+self.ID+".json", headers)
@@ -55,3 +55,9 @@ class bill(object):
     #             self.rep_vote=i['vote_position']
     #         return
 #
+"""BILLS"""
+bills=[
+Bill('North American Energy Security and Infrastructure Act of 2016', 's2012', '114'),
+Bill('Child Interstate Abortion Notification Act', 's403', '109'),
+Bill('Defense of Marriage Act', 'hr3396', '104'),
+Bill('Patient Protection and Affordable Care Act', 'hr3590', '111')]
