@@ -51,8 +51,8 @@ class Bill(object):
         return data['results'][0]['summary']
     def get_vote(self):
         headers={'X_API_Key':'a3Kt3J22sEpWhvLjXTrtWf4V560B8XExhkeOmMkD'}
-        url = ("https://api.propublica.org/congress/v1/"+self.congressnum+"/senate/sessions/"+self.sessionnum+"/votes/"+self.rollnum+".json")
-        r = requests.get(url, headers=headers)
+        url = ("https://api.propublica.org/congress/v1/"+self.congressnum+"/senate/sessions/"+self.sessionnum+"/votes/"+self.rollnum+".json", headers=headers)
+        r = requests.get(url)
         data= r.json()
         print (data)
         lists = data['results']['votes']['vote']['positions']
