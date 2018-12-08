@@ -1,20 +1,17 @@
 <html>
     <head>
         <title>
-            Politiquestion... 
+            Politiquestion...
         </title>
     </head>
 <body>
     <h1>Politiquestion... <br> How do you align?</h1>
 </body>
-    
-<form action = "http://localhost:5000/questions" method = "post">
+
+<form action = "http://localhost:5000/ZIP" method = "post">
   <fieldset>
     <legend>Find Your Representative:</legend>
-    ZipCode:<br>
-    <input type="text" name="ZIP" value=> <br> 
+    <input type="tel" pattern="[0-9]{5}" name="ZIP" placeholder="Zip Code"/>
     <input type="submit" value="Submit">
   </fieldset>
-    
 </form>
-
