@@ -15,10 +15,18 @@ def get_json(url):
 
 def cut_off(name):
     return name.split(" ")[-1]
-
+"""def cut_off2(description):
+    description=name.split(". ", 6)
+    descriptionshort=""
+    i=1
+    while i<6 in description:
+        descriptionshort+=". "+description[i]
+        i+=1
+    return descriptionshort"""
 class Bill(object):
-    def __init__(self, name, ID, congressnum=0, sessionnum=0, rollnum=0):
+    def __init__(self, name, link, ID, congressnum=0, sessionnum=0, rollnum=0, question=""):
         self.name=name
+        self.link=link
         self.ID=ID
         self.rollnum= rollnum
         self.congressnum = congressnum
@@ -27,6 +35,7 @@ class Bill(object):
         self.rep2_vote='No Vote'
         self.user_vote=0
         self.user_preference=1 #scale
+        self.question=question
         self.description=self.get_description()
     def __str__(self):
         print(self.name)
@@ -37,12 +46,15 @@ class Bill(object):
         else:
             return 0
     def get_description(self):
+        """This method is an API reference that gets bill descriptions for us more modularly but they were too long to be accessible to the average user as is, so we wrote our own descriptions and linked to more information
         headers = {"X-API-Key": "a3Kt3J22sEpWhvLjXTrtWf4V560B8XExhkeOmMkD"}
         url = "https://api.propublica.org/congress/v1/"+self.congressnum+"/bills/"+self.ID+".json"
         r = requests.get(url, headers=headers)
         data = r.json()
         description = data['results'][0]['summary']
-        return data['results'][0]['summary']
+        #description = cut_off2(description)
+        return data['results'][0]['summary']"""
+        pass
     def get_vote(self, reps):
         headers={'X-API-Key':'a3Kt3J22sEpWhvLjXTrtWf4V560B8XExhkeOmMkD'}
         url = "https://api.propublica.org/congress/v1/"+self.congressnum+"/senate/sessions/"+self.sessionnum+"/votes/"+self.rollnum+".json"
