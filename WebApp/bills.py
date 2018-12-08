@@ -14,16 +14,11 @@ def get_json(url):
     return response_data
 
 def cut_off(name):
+    """Gets last name"""
     return name.split(" ")[-1]
-"""def cut_off2(description):
-    description=name.split(". ", 6)
-    descriptionshort=""
-    i=1
-    while i<6 in description:
-        descriptionshort+=". "+description[i]
-        i+=1
-    return descriptionshort"""
+
 class Bill(object):
+    """These are the bills, each of which has votes from your representatives and a page on the congress website"""
     def __init__(self, name, link, ID, congressnum=0, sessionnum=0, rollnum=0, question=""):
         self.name=name
         self.link=link
@@ -56,28 +51,23 @@ class Bill(object):
         return data['results'][0]['summary']"""
         pass
     def get_vote(self, reps):
+        """API lookup that gets the representatives votes on this bill and puts them in the attributes"""
         headers={'X-API-Key':'a3Kt3J22sEpWhvLjXTrtWf4V560B8XExhkeOmMkD'}
         url = "https://api.propublica.org/congress/v1/"+self.congressnum+"/senate/sessions/"+self.sessionnum+"/votes/"+self.rollnum+".json"
         r = requests.get(url, headers=headers)
         data=r.json()
         rep1_name=cut_off(reps[0])
-        rep2_name=cut_off(reps[1])
+        rep2_name=cut_off(reps[1]) #just looking up based on last name to avoid middle name bugs
         r1=len(rep1_name)
         r2=len(rep2_name)
         lists = data['results']['votes']['vote']['positions']
         for i in lists:
-            if i['name'][-r1:]==rep1_name:
+            if i['name'][-r1:]==rep1_name: #checking the last n letters where n is the length of their last name
                 self.rep1_vote=i['vote_position']
             elif i['name'][-r2:]==rep2_name:
                 self.rep2_vote=i['vote_position']
         return
 
-"""BILLS"""
-bills=[
-Bill('North American Energy Security and Infrastructure Act of 2016', 's2012', '114', '2', '54'),
-Bill('Child Interstate Abortion Notification Act', 's403', '109', '2', '216'),
-Bill('Defense of Marriage Act', 'hr3396', '104', '2', '280'),
-Bill('Patient Protection and Affordable Care Act', 'hr3590', '111', '1', '396')]
 
 #reps = ['Mike Lee', 'Ted Bundy']
 #bills[0].get_vote()
