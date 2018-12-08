@@ -8,12 +8,13 @@ import json
 from pprint import pprint
 from bills import Bill
 reps=[]
+webpages=[]
 
 """Essential Info for API Bill Lookup"""
 comparing_votes=[
 Bill('Child Interstate Abortion Notification Act', 'https://www.congress.gov/bill/109th-congress/senate-bill/403?q=%7B', 's403', '109', '2', '216', "This bill is about stuff", ),
 Bill('North American Energy Security and Infrastructure Act of 2016', 'https://www.congress.gov/bill/114th-congress/senate-bill/2012?q=%7B', 's2012', '114', '2', '54', "This bill is about stuff"),
-Bill('Defense of Marriage Act', 'hr3396', 'https://www.congress.gov/bill/104th-congress/house-bill/3396?q=%7B%22search%22%3A', '104', '2', '280', "This bill is about stuff"),
+Bill('Defense of Marriage Act', 'https://www.congress.gov/bill/104th-congress/house-bill/3396', 'hr3396', '104', '2', '280', "This bill is about stuff"),
 Bill('Patient Protection and Affordable Care Act', 'https://www.congress.gov/bill/111th-congress/house-bill/3590?q=%7B%22search%22%3A%5B', 'hr3590', '111', '1', '396', "This bill is about stuff"),
 Bill('Support for Patients and Communities Act', 'https://www.congress.gov/bill/115th-congress/house-bill/6?q=%7B', 'hr6', '115', '2', '210', "This bill is about stuff"),
 Bill('Tax Cuts and Jobs Act', 'https://www.congress.gov/bill/115th-congress/house-bill/1?q=%7B', 'hr1', '115', '1', '323', "This bill is about stuff")]
@@ -32,17 +33,17 @@ def get_json(url):
 def get_rep(zipcode):
     """Given a zipcode, can look up the user's representatives using an API
     """
-    print(zipcode)
     url= "https://www.googleapis.com/civicinfo/v2/representatives?filter[role][legislatorUpperBody]&address="+zipcode+"&key=AIzaSyB9AuQfeJ2TRNSfE8GEHyBfwpgKaISJ7WI"
     data=get_json(url)
-    i=2 #skip prez and vice-prez
-    while i <4:
+    i=2
+    while i <4: #positions 2-4 are the senators
         repyboi=data["officials"][i]['name']
-        print (repyboi)
         global reps
         reps.append(repyboi)
+        website=data["officials"][i]['urls'][0] #get the reps website so the user can reach out
+        global webpages
+        webpages.append(website)
         i+=1
-    print(reps)
     return reps
 
 def compare_opinions(rep):
@@ -134,7 +135,7 @@ def zipentry():
 def ZIP():
     Zip=""
     Zip = request.form['ZIP']
-    reps=get_rep('02457')
+    reps=get_rep(Zip)
     return redirect(url_for('questions'))
 
 @app.route('/questions', methods = ['POST', 'GET'])
@@ -159,7 +160,7 @@ def results():
     rep_answers = get_rep_answers()
     Score1= compare_opinions(1)
     Score2= compare_opinions(2)
-    return render_template('Results2.html', Score1=Score1, Score2=Score2, UserScore1=answers[0], Rep1Score1=rep_answers[0][0], Rep1Score2=rep_answers[0][1], Rep1Score3=rep_answers[0][2], Rep1Score4=rep_answers[0][3], Rep1Score5=rep_answers[0][4], Rep1Score6=rep_answers[0][5], UserScore2=answers[1], UserScore3=answers[2], UserScore4=answers[3], UserScore5=answers[4], UserScore6=answers[5], Rep2Score1=rep_answers[1][0], Rep2Score2=rep_answers[1][1], Rep2Score3=rep_answers[1][2],  Rep2Score4=rep_answers[1][3], Rep2Score5=rep_answers[1][4], Rep2Score6=rep_answers[1][5], Vote1=Votes[0], Vote2=Votes[1], Vote3=Votes[2], Vote4=Votes[3], Vote5=Votes[4], Vote6=Votes[5])
+    return render_template('Results2.html', Score1=Score1, Score2=Score2, UserScore1=answers[0], Rep1Score1=rep_answers[0][0], Rep1Score2=rep_answers[0][1], Rep1Score3=rep_answers[0][2], Rep1Score4=rep_answers[0][3], Rep1Score5=rep_answers[0][4], Rep1Score6=rep_answers[0][5], UserScore2=answers[1], UserScore3=answers[2], UserScore4=answers[3], UserScore5=answers[4], UserScore6=answers[5], Rep2Score1=rep_answers[1][0], Rep2Score2=rep_answers[1][1], Rep2Score3=rep_answers[1][2],  Rep2Score4=rep_answers[1][3], Rep2Score5=rep_answers[1][4], Rep2Score6=rep_answers[1][5], Vote1=Votes[0], Vote2=Votes[1], Vote3=Votes[2], Vote4=Votes[3], Vote5=Votes[4], Vote6=Votes[5], Rep1Page=webpages[0], Rep2Page=webpages[1], Rep1Name=reps[0], Rep2Name=reps[1])
 
 if __name__ == '__main__':
     app.run()
