@@ -1,3 +1,3 @@
-Screenshots of our final project
+#Screenshots of our final project
 
-<img src="images/BillsClass.png" alt="hi" class="inline"/>
+<img src="images/BillsClass.PNG" alt="Bills Class Code" class="inline"/>

@@ -23,7 +23,7 @@
 ## Government Subsidized Health Care
 ### With the introduction of the Affordable Care Act, health care has become a requirement for most citizens and subsidized by the U.S. government to provide cheaper and more accessible options for everyone.  The tax penalty for not having health care and ineffectiveness of the health care system has been a main concern for critics.
 
-[Healthcare Bill](https://www.congress.gov/bill/111th-congress/house-bill/3590?q=%7B%22search%22%3A%5B)
+[Health Care Bill](https://www.congress.gov/bill/111th-congress/house-bill/3590?q=%7B%22search%22%3A%5B)
 
 ## Opioid Crisis
 ### The opioid crisis is a spreading pandemic of the use and abuse of prescription pain relievers, heroin, and fentanyl. Use of opioids has only increased in recent years, causing increases in addiction, overdoses, and the spread of infection diseases like HIV.
@@ -36,4 +36,6 @@
 [Tax Cuts and Jobs Act](https://www.congress.gov/bill/115th-congress/house-bill/1)
 
 ## Bank Deregulation
-### After the 2008 financial crisis, regulation of banks has been a high-profile subject for politicians and economists. While many have argued to have banks heavily regulated to prevent the
+### After the 2008 financial crisis, regulation of banks has been a high-profile subject for politicians and economists. While many have argued to have banks heavily regulated in order to prevent this from happening again, others say the banks have been over regulated in response to the crash, so much so that we are stifling economic growth.
+
+[Bank Deregulation Bill](https://www.congress.gov/bill/115th-congress/senate-bill/2155)
