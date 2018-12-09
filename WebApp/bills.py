@@ -1,13 +1,9 @@
-#import Barebones
-#from Barebones import get_json
 import json
 import requests
 from urllib.request import urlopen
 
 def get_json(url):
-    """Given a properly formatted URL for a JSON web API request, return
-    a Python JSON object containing the response to that request.
-    """
+    """Given a properly formatted URL for a JSON web API request, return a Python JSON object containing the response to that request."""
     f = urlopen(url, 1)
     response_text = f.read()
     response_data = json.loads(str(response_text, "utf-8"))
@@ -35,21 +31,6 @@ class Bill(object):
     def __str__(self):
         print(self.name)
         print(self.description)
-    def does_agree(self):
-        if self.user_vote==self.rep_vote:
-            return 1
-        else:
-            return 0
-    def get_description(self):
-        """This method is an API reference that gets bill descriptions for us more modularly but they were too long to be accessible to the average user as is, so we wrote our own descriptions and linked to more information
-        headers = {"X-API-Key": "a3Kt3J22sEpWhvLjXTrtWf4V560B8XExhkeOmMkD"}
-        url = "https://api.propublica.org/congress/v1/"+self.congressnum+"/bills/"+self.ID+".json"
-        r = requests.get(url, headers=headers)
-        data = r.json()
-        description = data['results'][0]['summary']
-        #description = cut_off2(description)
-        return data['results'][0]['summary']"""
-        pass
     def get_vote(self, reps):
         """API lookup that gets the representatives votes on this bill and puts them in the attributes"""
         headers={'X-API-Key':'a3Kt3J22sEpWhvLjXTrtWf4V560B8XExhkeOmMkD'}
@@ -67,6 +48,17 @@ class Bill(object):
             elif i['name'][-r2:]==rep2_name:
                 self.rep2_vote=i['vote_position']
         return
+
+    def get_description(self):
+        """This method is an API reference that gets bill descriptions for us more modularly but they were too long to be accessible to the average user as is, so we wrote our own descriptions and linked to more information
+        headers = {"X-API-Key": "a3Kt3J22sEpWhvLjXTrtWf4V560B8XExhkeOmMkD"}
+        url = "https://api.propublica.org/congress/v1/"+self.congressnum+"/bills/"+self.ID+".json"
+        r = requests.get(url, headers=headers)
+        data = r.json()
+        description = data['results'][0]['summary']
+        #description = cut_off2(description)
+        return data['results'][0]['summary']"""
+        pass
 
 
 #reps = ['Mike Lee', 'Ted Bundy']

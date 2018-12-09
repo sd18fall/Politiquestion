@@ -7,24 +7,33 @@ from urllib.request import urlopen
 import json
 from pprint import pprint
 from bills import Bill
+
+from flask import Flask
+app = Flask(__name__)
+
+from flask import render_template
+from flask import redirect, url_for, request
+
+"""GLOBAL LISTS"""
 reps=[]
 webpages=[]
 
-"""Essential Info for API Bill Lookup"""
+"""BILL LIST"""
 comparing_votes=[
 Bill('Child Interstate Abortion Notification Act', 'https://www.congress.gov/bill/109th-congress/senate-bill/403?q=%7B', 's403', '109', '2', '216', "Should it be a crime to knowingly transport a minor across a state line to obtain an abortion without satisfying a parental involvement law in the minor's resident state?"),
 Bill('North American Energy Security and Infrastructure Act of 2016', 'https://www.congress.gov/bill/114th-congress/senate-bill/2012?q=%7B', 's2012', '114', '2', '54', "Do you want our power grid to move toward more sustainable options?"),
-Bill('Defense of Marriage Act', 'https://www.congress.gov/bill/104th-congress/house-bill/3396', 'hr3396', '104', '2', '280', "Do you support LGBTQ+ rights?"),
-Bill('Patient Protection and Affordable Care Act', 'https://www.congress.gov/bill/111th-congress/house-bill/3590?q=%7B%22search%22%3A%5B', 'hr3590', '111', '1', '396', "Do you approve with the Affordable Care Act (Obamacare)?"),
+Bill('Defense of Marriage Act', 'https://www.congress.gov/bill/104th-congress/house-bill/3396', 'hr3396', '104', '2', '280', "Do you support LGBTQ+ rights in relation to marriage?"),
+Bill('Patient Protection and Affordable Care Act', 'https://www.congress.gov/bill/111th-congress/house-bill/3590?q=%7B%22search%22%3A%5B', 'hr3590', '111', '1', '396', "Do you approve of the Affordable Care Act (Obamacare)?"),
 Bill('Support for Patients and Communities Act', 'https://www.congress.gov/bill/115th-congress/house-bill/6?q=%7B', 'hr6', '115', '2', '210', "Should the United States finance a response to the Opioid Crisis?"),
-Bill('Tax Cuts and Jobs Act', 'https://www.congress.gov/bill/115th-congress/house-bill/1?q=%7B', 'hr1', '115', '1', '323', "Do you promote tax cuts?"),
+Bill('Tax Cuts and Jobs Act', 'https://www.congress.gov/bill/115th-congress/house-bill/1?q=%7B', 'hr1', '115', '1', '323', "Do you promote comprehensive tax cuts, especially for corporations?"),
 Bill('Economic Growth, Regulatory Relief, and Consumer Protection Act', 'https://www.congress.gov/bill/115th-congress/senate-bill/2155', 's2155', '115', '2', '54', "Should banks be deregulated?"),
-Bill("Countering America's Adversaries Through Sanctions Act",'https://www.congress.gov/bill/115th-congress/house-bill/3364', 'hr3364', '115', '1', '175', "Should the United States continue to sanction Russia, North Korea, and Iran?")]
+Bill('Department of Defense Appropriations Act, 2017', 'https://www.congress.gov/bill/114th-congress/house-bill/5293?q=%7B', 's5293', '114', '2', '136', "Should the U.S. allocate more funds to the military budget ($583.7 billion)?")]
+#Bill("Countering America's Adversaries Through Sanctions Act",'https://www.congress.gov/bill/115th-congress/house-bill/3364', 'hr3364', '115', '1', '175', "Should the United States continue to sanction Russia, North Korea, and Iran?")
+
+"""API FUNCTIONS"""
 
 def get_json(url):
-    """Given a properly formatted URL for a JSON web API request, return
-    a Python JSON object containing the response to that request.
-    """
+    """Given a properly formatted URL for a JSON web API request, return a Python JSON object containing the response to that request."""
     f = urlopen(url)
     response_text = f.read()
     response_data = json.loads(str(response_text, "utf-8"))
@@ -44,6 +53,19 @@ def get_rep(zipcode):
         webpages.append(website)
         i+=1
     return reps
+
+def get_rep_answers():
+    """Gathers the representatives votes from the attributes of the Bill objects into lists that Flask can use"""
+    representatives=reps
+    rep1_answers=[]
+    rep2_answers=[]
+    for Bill in comparing_votes:
+        Bill.get_vote(representatives) #API calls
+        rep1_answers.append(Bill.rep1_vote)
+        rep2_answers.append(Bill.rep2_vote)
+    return [rep1_answers, rep2_answers]
+
+"""COMPUTATION"""
 
 def compare_opinions(rep):
     """Generates numeric results based on comparing the opinions with weight to user priorities"""
@@ -68,15 +90,14 @@ def compare_opinions(rep):
     similarity=agree/passion# use later*(Bill.user_preference/passion) #multiply relative preference by binary of agreement
     return "Similarity score of "+str(similarity*100)+" % with representative "+ reps[rep-1]
 
-    """Generates results based on comparing the opinions with weight to user priorities
+"""PASSING INFO TO FLASK"""
 
-    passion=0
-    similarity=0
-    for bill in comparing_votes:
-        passion+=bill.user_preference #get the total perference votes to guage relative preference
-    for bill in comparing_votes:
-        similarity+=bill.does_agree()*(bill.user_preference/passion) #multiply relative preference by binary of agreement
-    return "Similarity score of "+str(similarity*100)[:5]+"%" #turns score into percentage with 2 past decimal"""
+def get_links():
+    """Grabs links from Bill object attributes and turns them into a list that Flask can use"""
+    links=[]
+    for Bill in comparing_votes:
+        links.append(Bill.link)
+    return links
 
 def give_me_things():
     """Turns the question info into format for HTML"""
@@ -96,35 +117,7 @@ def get_user_answers(answers):
         comparing_votes[i].user_vote=answers[i]
         i+=1
 
-def get_rep_answers():
-    """Gathers the representatives votes from the attributes of the Bill objects into lists that Flask can use"""
-    representatives=reps
-    rep1_answers=[]
-    rep2_answers=[]
-    print(representatives)
-    for Bill in comparing_votes:
-        Bill.get_vote(representatives) #API calls
-        rep1_answers.append(Bill.rep1_vote)
-        rep2_answers.append(Bill.rep2_vote)
-    print (rep1_answers, " ", rep2_answers)
-    return [rep1_answers, rep2_answers]
-    #return [["Yes", "Yes", "Yes", "Yes"],["No","No","No", "No"]]
-
-def get_links():
-    """Grabs links from Bill object attributes and turns them into a list that Flask can use"""
-    links=[]
-    for Bill in comparing_votes:
-        links.append(Bill.link)
-    return links
-
-""" This is Main Page Code / all of our WebApp functionality"""
-from flask import Flask
-app = Flask(__name__)
-
-from flask import render_template
-from flask import redirect, url_for, request
-
-ZIPcode=0
+"""WEBAPP-FLASK"""
 
 @app.route('/')
 def zipentry():
@@ -166,4 +159,3 @@ def results():
 
 if __name__ == '__main__':
     app.run()
-    #print (get_rep('02457'))
