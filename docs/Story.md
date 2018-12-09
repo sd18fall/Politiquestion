@@ -33,6 +33,6 @@ Last, we decided to add an API call that got the senators personal websites and 
 
 # The final product
 
-# We have a demonstration video and some screenshots of our final code at the link below.
+### We have a demonstration video and some screenshots of our final code at the link below.
 
-# [Results](https://sd18fall.github.io/Politiquestion/Results)
+### [Results](https://sd18fall.github.io/Politiquestion/Results)

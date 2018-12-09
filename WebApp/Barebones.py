@@ -1,5 +1,6 @@
-"""" This file contains the functions that the web app will use to display
-information to the user and to calculate similarity to representative votes.
+"""" This file contains the functions that the web app will use to display information to the user and to calculate similarity to representative votes.
+Authors: Rockwell Gulassa, Bailey Wolfe, Miguel Castillo
+APIs: ProPublica, Google Civic API
 """
 import requests
 import bills
@@ -65,31 +66,6 @@ def get_rep_answers():
         rep2_answers.append(Bill.rep2_vote)
     return [rep1_answers, rep2_answers]
 
-"""COMPUTATION"""
-
-def compare_opinions(rep):
-    """Generates numeric results based on comparing the opinions with weight to user priorities"""
-    passion=0
-    #for Bill in comparing_votes:
-        #passion+=Bill.user_preference #get the total perference votes to guage relative preference
-    similarity=0
-    agree=0
-    for Bill in comparing_votes:
-        if rep==1:
-            if Bill.rep1_vote!='No Vote' and Bill.rep1_vote!='Not Voting':
-                passion+=1
-                if Bill.rep1_vote==Bill.user_vote:
-                    agree+=1
-        elif rep==2:
-            if Bill.rep2_vote!='No Vote' and Bill.rep2_vote!='Not Voting':
-                passion+=1
-                if Bill.rep2_vote==Bill.user_vote:
-                    agree+=1
-    if passion==0:
-        passion=1
-    similarity=agree/passion# use later*(Bill.user_preference/passion) #multiply relative preference by binary of agreement
-    return "Similarity score of "+str(similarity*100)+" % with representative "+ reps[rep-1]
-
 """PASSING INFO TO FLASK"""
 
 def get_links():
@@ -116,6 +92,28 @@ def get_user_answers(answers):
     while i< len(answers):
         comparing_votes[i].user_vote=answers[i]
         i+=1
+
+"""COMPUTATION"""
+
+def compare_opinions(rep):
+    """Generates numeric results based on comparing the opinions with weight to user priorities"""
+    passion=0
+    agree=0
+    for Bill in comparing_votes:
+        if rep==1:
+            if Bill.rep1_vote!='No Vote' and Bill.rep1_vote!='Not Voting':
+                passion+=1
+                if Bill.rep1_vote==Bill.user_vote:
+                    agree+=1
+        elif rep==2:
+            if Bill.rep2_vote!='No Vote' and Bill.rep2_vote!='Not Voting':
+                passion+=1
+                if Bill.rep2_vote==Bill.user_vote:
+                    agree+=1
+    if passion==0:
+        passion=1
+    similarity=agree/passion
+    return "Similarity score of "+str(similarity*100)+" % with representative "+ reps[rep-1]
 
 """WEBAPP-FLASK"""
 

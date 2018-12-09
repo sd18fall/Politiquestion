@@ -27,6 +27,9 @@
 [Healthcare Bill](https://www.congress.gov/bill/111th-congress/house-bill/3590?q=%7B%22search%22%3A%5B)
 
 ## Opioid Crisis
-### The opioid crisis is a spreading pandemic of the use and abuse of prescription pain relievers, heroin, and fentanyl.  
+### The opioid crisis is a spreading pandemic of the use and abuse of prescription pain relievers, heroin, and fentanyl. Use of opioids has only increased in recent years, causing increases in addiction, overdoses, and the spread of infection diseases like HIV.
 
 [Opioid Response Bill](https://www.congress.gov/bill/115th-congress/house-bill/6?q=%7B)
+
+## Tax cuts
+### Taxes throughout history have been a point of contention for governments and citizens. Some advocate for higher taxes as a means of wealth distribution, while others view taxes as the government seizing private property .

@@ -1,3 +1,7 @@
+""""This file contains the class that the web app will use to hold information on the bills and its relevant functions
+Authors: Rockwell Gulassa, Bailey Wolfe, Miguel Castillo
+APIs: ProPublica, Google Civic API
+"""
 import json
 import requests
 from urllib.request import urlopen
@@ -48,7 +52,6 @@ class Bill(object):
             elif i['name'][-r2:]==rep2_name:
                 self.rep2_vote=i['vote_position']
         return
-
     def get_description(self):
         """This method is an API reference that gets bill descriptions for us more modularly but they were too long to be accessible to the average user as is, so we wrote our own descriptions and linked to more information
         headers = {"X-API-Key": "a3Kt3J22sEpWhvLjXTrtWf4V560B8XExhkeOmMkD"}
@@ -59,11 +62,3 @@ class Bill(object):
         #description = cut_off2(description)
         return data['results'][0]['summary']"""
         pass
-
-
-#reps = ['Mike Lee', 'Ted Bundy']
-#bills[0].get_vote()
-
-#x=bills[0].rep2_vote
-#print (x)
-#print(cut_off("Ted Cruz Happy Joe"))
