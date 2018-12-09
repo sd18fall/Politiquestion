@@ -23,7 +23,7 @@ webpages=[]
 comparing_votes=[
 Bill('Child Interstate Abortion Notification Act', 'https://www.congress.gov/bill/109th-congress/senate-bill/403?q=%7B', 's403', '109', '2', '216', "Should it be a crime to knowingly transport a minor across a state line to obtain an abortion without satisfying a parental involvement law in the minor's resident state?"),
 Bill('North American Energy Security and Infrastructure Act of 2016', 'https://www.congress.gov/bill/114th-congress/senate-bill/2012?q=%7B', 's2012', '114', '2', '54', "Do you want our power grid to move toward more sustainable options?"),
-Bill('Defense of Marriage Act', 'https://www.congress.gov/bill/104th-congress/house-bill/3396', 'hr3396', '104', '2', '280', "Do you support LGBTQ+ rights in relation to marriage?"),
+Bill('Defense of Marriage Act', 'https://www.congress.gov/bill/104th-congress/house-bill/3396', 'hr3396', '104', '2', '280', "Do you want to limit the right to marriage to heterosexual couples?"),
 Bill('Patient Protection and Affordable Care Act', 'https://www.congress.gov/bill/111th-congress/house-bill/3590?q=%7B%22search%22%3A%5B', 'hr3590', '111', '1', '396', "Do you approve of the Affordable Care Act (Obamacare)?"),
 Bill('Support for Patients and Communities Act', 'https://www.congress.gov/bill/115th-congress/house-bill/6?q=%7B', 'hr6', '115', '2', '210', "Should the United States finance a response to the Opioid Crisis?"),
 Bill('Tax Cuts and Jobs Act', 'https://www.congress.gov/bill/115th-congress/house-bill/1?q=%7B', 'hr1', '115', '1', '323', "Do you promote comprehensive tax cuts, especially for corporations?"),

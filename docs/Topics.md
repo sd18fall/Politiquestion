@@ -32,4 +32,9 @@
 [Opioid Response Bill](https://www.congress.gov/bill/115th-congress/house-bill/6?q=%7B)
 
 ## Tax cuts
-### Taxes throughout history have been a point of contention for governments and citizens. Some advocate for higher taxes as a means of wealth distribution, while others view taxes as the government seizing private property .
+### Taxes throughout history have been a point of contention for governments and citizens. Some advocate for higher taxes as a means of wealth distribution, while others view taxes as the government seizing hard earned private property.
+
+[Tax Cuts and Jobs Act](https://www.congress.gov/bill/115th-congress/house-bill/1)
+
+## Bank Deregulation
+### After the 2008 financial crisis, regulation of banks has been a
