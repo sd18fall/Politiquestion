@@ -44,7 +44,7 @@ Last, we decided to add an API call that got the senators personal websites and 
 
 ![Bills Class](images/BillsClass.png)
 
-<iframe width="1120" height="630" src="https://www.youtube.com/embed/0zmT4aBMpWc" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe width="840" height="473" src="https://www.youtube.com/embed/0zmT4aBMpWc" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 ***
 
