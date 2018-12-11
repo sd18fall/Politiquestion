@@ -2,7 +2,6 @@
 ## Readme (Where to input API keys)
 ## Add images and screenshots for implementation page
 ## Remove keys
-## Check which packages we utilize
 
 # Inspiration
 Bailey Wolfe, Miguel Castillo II, and Rockwell Gulassa are three undergraduate students taking courses at Olin College of Engineering. In Fall of 2018 they joined together to try to empower democracy in the US using the software design skills they had acquired.
@@ -43,9 +42,9 @@ Last, we decided to add an API call that got the senators personal websites and 
 
 # Implementation
 
-![alt text](https://github.com/sd18fall/Politiquestion/tree/master/docs/images/ "Title")
+![Bills Class](images/BillsClass.png)
 
-
+<iframe width="560" height="315" src="https://www.youtube.com/embed/0zmT4aBMpWc" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 ***
 
@@ -102,14 +101,8 @@ You can download all the files for Politiquestion from the GitHub. To run the pr
 The Python packages needed to run this program is as follows:
 * Requests 
     $ pipenv install requests
-* json
-    built in module
-* pprint
-    built in module
 * Flask
     $ pip install Flask
-* urllib.request
-    built in module
 
 ## What API's we will use and how to get an API Key
 
