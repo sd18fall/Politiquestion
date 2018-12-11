@@ -38,7 +38,7 @@ Last, we decided to add an API call that got the senators personal websites and 
 # Topics
 
 ## Abortion
-### Abortion is a medical procedure that results in the termination of a human pregnancy. Abortion has been a controversial issue not only in the United States, but across the world.  The topic has been typically split into two sides, Pro-Life, outlawing abortion except for the most extreme circumstances, and Pro-Choice, supporting a woman's ability to choose if and when she wants to undergo an abortion.
+Abortion is a medical procedure that results in the termination of a human pregnancy. Abortion has been a controversial issue not only in the United States, but across the world.  The topic has been typically split into two sides, Pro-Life, outlawing abortion except for the most extreme circumstances, and Pro-Choice, supporting a woman's ability to choose if and when she wants to undergo an abortion.
 
 [Abortion bill](https://www.congress.gov/bill/109th-congress/senate-bill/403?q=%7B)
 
