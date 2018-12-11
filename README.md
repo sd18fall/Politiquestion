@@ -1,7 +1,6 @@
 ## Politiquestion
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/0zmT4aBMpWc?controls=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
+[See our Web App in Action](https://www.youtube.com/watch?v=0zmT4aBMpWc)
 
 This is a web app that provides questions that the user can answer and find out who their senators are and how they voted on issues.  
 
