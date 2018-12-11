@@ -75,3 +75,12 @@ Last, we decided to add an API call that got the senators personal websites and 
 
 [Bank Deregulation Bill](https://www.congress.gov/bill/115th-congress/senate-bill/2155)
 
+# How to download our program
+
+You can download all the files for Politiquestion from the GitHub. To run the program please run the Barebones.py file from the terminal.
+
+## What packages you will need to run it
+
+You will need to install Flask, ....
+
+## What API's we will use and how to get an API Key
