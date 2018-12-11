@@ -1,11 +1,12 @@
 ## Politiquestion
 
-[See our Web App in Action](https://www.youtube.com/watch?v=0zmT4aBMpWc)
+[See Our Web App In Action](https://www.youtube.com/watch?v=0zmT4aBMpWc)
 
 This is a web app that provides questions that the user can answer and find out who their senators are and how they voted on issues.  
 
 ### Authors: 
-  Rocky, Miguel, Bailey
+
+ Bailey Wolfe, Miguel Castillo, Rocky Gulassa
 
 ### APIs: 
 
