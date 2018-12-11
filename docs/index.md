@@ -1,8 +1,3 @@
-# To be Completed:
-## Readme (Where to input API keys)
-## Add images and screenshots for implementation page
-## Remove keys
-
 # Inspiration
 Bailey Wolfe, Miguel Castillo II, and Rockwell Gulassa are three undergraduate students taking courses at Olin College of Engineering. In Fall of 2018 they joined together to try to empower democracy in the US using the software design skills they had acquired.
 
