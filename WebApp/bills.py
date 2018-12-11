@@ -37,7 +37,7 @@ class Bill(object):
         print(self.description)
     def get_vote(self, reps):
         """API lookup that gets the representatives votes on this bill and puts them in the attributes"""
-        headers={'X-API-Key':'a3Kt3J22sEpWhvLjXTrtWf4V560B8XExhkeOmMkD'}
+        headers={'X-API-Key':'PROPUBLICA_KEY'}
         url = "https://api.propublica.org/congress/v1/"+self.congressnum+"/senate/sessions/"+self.sessionnum+"/votes/"+self.rollnum+".json"
         r = requests.get(url, headers=headers)
         data=r.json()
@@ -54,7 +54,7 @@ class Bill(object):
         return
     def get_description(self):
         """This method is an API reference that gets bill descriptions for us more modularly but they were too long to be accessible to the average user as is, so we wrote our own descriptions and linked to more information
-        headers = {"X-API-Key": "a3Kt3J22sEpWhvLjXTrtWf4V560B8XExhkeOmMkD"}
+        headers = {"X-API-Key": "PROPUBLICA_KEY"}
         url = "https://api.propublica.org/congress/v1/"+self.congressnum+"/bills/"+self.ID+".json"
         r = requests.get(url, headers=headers)
         data = r.json()

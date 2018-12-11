@@ -42,7 +42,7 @@ def get_json(url):
 
 def get_rep(zipcode):
     """Given a zipcode, can look up the user's representatives using an API while also grabbing their website url"""
-    url= "https://www.googleapis.com/civicinfo/v2/representatives?filter[role][legislatorUpperBody]&address="+zipcode+"&key=AIzaSyB9AuQfeJ2TRNSfE8GEHyBfwpgKaISJ7WI"
+    url= "https://www.googleapis.com/civicinfo/v2/representatives?filter[role][legislatorUpperBody]&address="+zipcode+"&key=GOOGLE_CIVIC_KEY"
     data=get_json(url)
     i=2
     while i <4: #positions 2-4 are the senators
