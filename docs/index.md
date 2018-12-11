@@ -5,9 +5,9 @@ Driven by the high-stakes 2018 midterm elections, the students set out to empowe
 
 With that goal in mind the project was conceived as a web app that would utilize public APIs to connect the voter with their representatives based on their zip code. From there we started research, development, and iteration.
 
-# Iteration
-
 ***
+
+# Iteration
 
 ## Version 1
 
@@ -33,8 +33,11 @@ After that, we realized that the descriptions that were being pulled from the AP
 
 Last, we decided to add an API call that got the senators personal websites and displayed that information in the results page. This was added so that the user could get more information about their senators and contact them from there if they so desired.
 
+***
+
 # Implementation
 
+***
 
 # Topics
 
@@ -77,6 +80,8 @@ Taxes throughout history have been a point of contention for governments and cit
 After the 2008 financial crisis, regulation of banks has been a high-profile subject for politicians and economists. While many have argued to have banks heavily regulated in order to prevent this from happening again, others say the banks have been over regulated in response to the crash, so much so that we are stifling economic growth.
 
 [Bank Deregulation Bill](https://www.congress.gov/bill/115th-congress/senate-bill/2155)
+
+***
 
 # How to download our program
 
