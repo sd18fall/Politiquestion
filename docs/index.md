@@ -37,9 +37,11 @@ Last, we decided to add a ProPublica API call that got the Senators' personal we
 
 # Implementation
 
+<iframe width="840" height="473" src="https://www.youtube.com/embed/0zmT4aBMpWc" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 ![Bills Class](images/BillsClass.png)
 
-<iframe width="840" height="473" src="https://www.youtube.com/embed/0zmT4aBMpWc" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<script src="//my.visme.co/visme.js"></script><div class="visme_d" data-url="mxn1ydrn-untitled-project" data-w="800" data-h="896" data-domain="my"></div><p style="width: 220px; font-family: Arial; border-radius:3px; padding: 3px; background-color: rgba(0, 0, 0, 0.1); font-size: 10px; color: #333333" >Speak Visually. Create an infographic with <a href="https://www.visme.co/make-infographics?utm_source=CTA&utm_medium=Embed" target="_blank" style="color: #30a0ea"><strong>Visme</strong></a></p>
 
 ***
 
