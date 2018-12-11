@@ -1,5 +1,3 @@
 baseurl: "Politiquestion"
 url: "https://sd18fall.github.io/"
-
-
 theme: jekyll-theme-cayman
