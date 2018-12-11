@@ -37,7 +37,7 @@ Last, we decided to add an API call that got the senators personal websites and 
 
 ### We have a demonstration video and some screenshots of our final code at the link below.
 
-### [Results](https://sd18fall.github.io/Politiquestion/Results)
+[Results](https://sd18fall.github.io/Politiquestion/Results)
 
 
 [Story](https://sd18fall.github.io/Politiquestion/Story)
