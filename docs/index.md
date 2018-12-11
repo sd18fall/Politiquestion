@@ -1,3 +1,9 @@
+# To be Completed:
+## Readme (Where to input API keys)
+## Add images and screenshots for implementation page
+## Remove keys
+## Check which packages we utilize
+
 # Inspiration
 Bailey Wolfe, Miguel Castillo II, and Rockwell Gulassa are three undergraduate students taking courses at Olin College of Engineering. In Fall of 2018 they joined together to try to empower democracy in the US using the software design skills they had acquired.
 
@@ -36,6 +42,8 @@ Last, we decided to add an API call that got the senators personal websites and 
 ***
 
 # Implementation
+
+![alt text](https://github.com/sd18fall/Politiquestion/tree/master/docs/images/ "Title")
 
 ***
 
