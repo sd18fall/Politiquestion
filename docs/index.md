@@ -1,5 +1,5 @@
 # Inspiration
-Bailey Wolfe, Miguel Castillo, and Rockwell Gulassa are three undergraduate students taking courses at Olin College of Engineering. In Fall of 2018 they joined together to try to empower democracy in the US using the software design skills they had acquired.
+Bailey Wolfe, Miguel Castillo II, and Rockwell Gulassa are three undergraduate students taking courses at Olin College of Engineering. In Fall of 2018 they joined together to try to empower democracy in the US using the software design skills they had acquired.
 
 Driven by the high-stakes 2018 midterm elections, the students set out to empower the everyday voter by connecting them back to the very legislature that their congress members are supposed to be representing their interests in voting on. By allowing the everyday user to evaluate their representatives actual choices on the job we could minimize ideological fog and connect the voters back to the legislative process.
 
@@ -7,6 +7,7 @@ With that goal in mind the project was conceived as a web app that would utilize
 
 # Iteration
 
+***
 
 ## Version 1
 
