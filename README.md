@@ -1,6 +1,6 @@
 ## Politiquestion
 
-This is a web app that gives questions that the user can answer and find out who their senators are and how they voted on issues.  
+This is a web app that provides questions that the user can answer and find out who their senators are and how they voted on issues.  
 
 ### Authors: 
   Rocky, Miguel, Bailey
