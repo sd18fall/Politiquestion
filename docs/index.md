@@ -3,7 +3,7 @@ Bailey Wolfe, Miguel Castillo, and Rockwell Gulassa are three undergraduate stud
 
 Driven by the high-stakes 2018 midterm elections, the students set out to empower the everyday voter by connecting them back to the very legislature that their congress members are supposed to be representing their interests in voting on. By allowing the everyday user to evaluate their representatives actual choices on the job we could minimize ideological fog and connect the voters back to the legislative process.
 
-With that goal in mind the project was conceived as a web app that would utilize public APIs to connect the voter with their representatives based on their Zip code. From there we started research, development, and iteration.
+With that goal in mind the project was conceived as a web app that would utilize public APIs to connect the voter with their representatives based on their zip code. From there we started research, development, and iteration.
 
 # Iteration
 
@@ -83,6 +83,15 @@ You can download all the files for Politiquestion from the GitHub. To run the pr
 
 ## What packages you will need to run it
 
-You will need to install Flask, ....
+The Python packages needed to run this program is as follows:
+* Requests
+* json
+* pprint
+* Flask
+* urllib.request
 
 ## What API's we will use and how to get an API Key
+
+Google Civic Informaiton API - Follow the intructions on Google's [Credentials page](https://console.developers.google.com/apis/credentials) to recieve an API key
+
+ProPublica API - You can sign up to request an API key at [ProPublica's Data Store](https://www.propublica.org/datastore/api/propublica-congress-api)
