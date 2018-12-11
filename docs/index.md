@@ -7,6 +7,7 @@ With that goal in mind the project was conceived as a web app that would utilize
 
 # Iteration
 
+
 ## Version 1
 
 To start, we had separate files and functionality for the web app and the API pulls. The API pulls worked on gathering data and using that data to get the next API information. While the web app was not connected to that information, and just was created to have pre-filled templates display fake data. We did this as a first step in order to let the two pieces be developed simultaneously.
